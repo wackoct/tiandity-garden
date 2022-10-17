@@ -1,11 +1,11 @@
 ---
 date created: 2022-09-27
-date modified: 2022-09-28
+date modified: 2022-10-16
 ---
 
 想要组件记住一些信息，但不想触发新的渲染，可以使用ref
 
-### 在组件中添加ref
+#### 在组件中添加ref
 
 ```js
 const ref = useRef(0)
