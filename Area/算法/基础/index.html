@@ -1,0 +1,256 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="时间复杂度和空间复杂度 时间复杂度：渐进时间复杂度，表示算法的执行时间与数据规模之间的增长关系
+空间复杂度：渐进空间复杂度，表示算法的存储空间与数据规模之间的增长关系
+执行效率：执行时间、存储空间
+大O表示法 T(n) = O(f(n))
+所有代码的执行时间 T(n) 与每行代码的执行次数 n 成正比。
+常见时间复杂度 按数量级递增如下：
+ 常量阶 O(1) 对数阶 O(logn) ——二分查找 线性阶 O(n) —— 计数排序、基数排序、桶排序 线性对数阶 O(nlogn) —— 归并排序、快速排序、堆排序 平方阶 O(n^2) —— 冒泡排序、插入排序、选择排序 立方阶 O(n^3) 指数阶 O(2^n) 阶乘阶 O(n!"><title>🪴 Quartz 3.3</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://wackoct.github.io/tiandity-garden//icon.png><link href=https://wackoct.github.io/tiandity-garden/styles.7153093e4d1bbb584a28469cadfa3f88.min.css rel=stylesheet><link href=https://wackoct.github.io/tiandity-garden/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://wackoct.github.io/tiandity-garden/js/darkmode.e6e4df279aacf33d017fa3239a6defd2.min.js></script>
+<script src=https://wackoct.github.io/tiandity-garden/js/util.9825137f5e7825e8553c68ce39ac9e44.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js integrity=sha384-ww/583aHhxWkz5DEVn6OKtNiIaLi2iBRNZXfJRiY1Ai7tnJ9UXpEsyvOITVpTl4A crossorigin=anonymous></script>
+<script src=https://unpkg.com/@floating-ui/core@0.7.3></script>
+<script src=https://unpkg.com/@floating-ui/dom@0.5.4></script>
+<script src=https://wackoct.github.io/tiandity-garden/js/popover.53ad9a087e3feeaaa12b63bfd02d923b.min.js></script>
+<script src=https://wackoct.github.io/tiandity-garden/js/code-title.b35124ad8db0ba37162b886afb711cbc.min.js></script>
+<script src=https://wackoct.github.io/tiandity-garden/js/clipboard.c20857734e53a3fb733b7443879efa61.min.js></script>
+<script src=https://wackoct.github.io/tiandity-garden/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const BASE_URL="https://wackoct.github.io/tiandity-garden/",fetchData=Promise.all([fetch("https://wackoct.github.io/tiandity-garden/indices/linkIndex.9cd5ed55349f6ccad52542f12968ff64.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://wackoct.github.io/tiandity-garden/indices/contentIndex.c8c7997326dafb53e38c499646c8b0f7.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://wackoct.github.io/tiandity-garden",!0,!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!1;drawGraph("https://wackoct.github.io/tiandity-garden",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],macros:{'’':"'"},throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/wackoct.github.io\/tiandity-garden\/js\/router.9d4974281069e9ebb189f642ae1e3ca2.min.js"
+    attachSPARouting(init, render)
+  </script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://wackoct.github.io/tiandity-garden/js/full-text-search.24827f874defbbc6d529926cbfcfb493.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://wackoct.github.io/tiandity-garden/>🪴 Quartz 3.3</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><p class=meta>Last updated
+Unknown
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/Area/%e7%ae%97%e6%b3%95/%e5%9f%ba%e7%a1%80.md rel=noopener>Edit Source</a></p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><ol><li><a href=#时间复杂度和空间复杂度>时间复杂度和空间复杂度</a></li><li><a href=#递归>递归</a></li><li><a href=#算法思想>算法思想</a></li></ol></li></ol></nav></details></aside><a href=#时间复杂度和空间复杂度><h3 id=时间复杂度和空间复杂度><span class=hanchor arialabel=Anchor># </span>时间复杂度和空间复杂度</h3></a><p>时间复杂度：渐进时间复杂度，表示算法的执行时间与数据规模之间的增长关系<br>空间复杂度：渐进空间复杂度，表示算法的存储空间与数据规模之间的增长关系</p><p>执行效率：执行时间、存储空间</p><a href=#大o表示法><h4 id=大o表示法><span class=hanchor arialabel=Anchor># </span>大O表示法</h4></a><p><strong>T(n) = O(f(n))</strong><br>所有代码的执行时间 T(n) 与每行代码的执行次数 n 成正比。</p><a href=#常见时间复杂度><h4 id=常见时间复杂度><span class=hanchor arialabel=Anchor># </span>常见时间复杂度</h4></a><p>按数量级递增如下：</p><ul><li>常量阶 O(1)</li><li>对数阶 O(logn) ——二分查找</li><li>线性阶 O(n) —— 计数排序、基数排序、桶排序</li><li>线性对数阶 O(nlogn) —— 归并排序、快速排序、堆排序</li><li>平方阶 O(n^2) —— 冒泡排序、插入排序、选择排序</li><li>立方阶 O(n^3)</li><li>指数阶 O(2^n)</li><li>阶乘阶 O(n!)</li></ul><p>判断时间复杂度的小技巧：</p><ul><li>单段代码看高频：循环</li><li>多段代码取最大：有循环和多重循环的情况，取多重循环的复杂度</li><li>嵌套代码求乘积：循环中的递归</li><li>多个规模求和：分别有两个参数控制两个循环的次数，取二者的复杂度相加</li></ul><a href=#常见空间复杂度><h4 id=常见空间复杂度><span class=hanchor arialabel=Anchor># </span>常见空间复杂度</h4></a><ul><li>O(1)</li><li>O(n)</li><li>O(n^2) —— 二位数组</li></ul><p><strong>一般在实际中，空间复杂度和你初始化的数组长度有关。除此之外，也和递归的深度有关</strong></p><p>时间复杂度和空间复杂度往往是相互影响的，两者不可得兼。<br>在工程以及算法解题套路中，根据实际情况，常用的做法就是空间换时间。比如：记忆化搜索、缓存等。</p><a href=#递归><h3 id=递归><span class=hanchor arialabel=Anchor># </span>递归</h3></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>factorial</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>n</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>(</span><span class=nx>n</span> <span class=o>&lt;=</span> <span class=mi>1</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	 <span class=k>return</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span> 
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=nx>n</span> <span class=o>*</span> <span class=nx>factorial</span><span class=p>(</span><span class=nx>n</span> <span class=o>-</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>递归无非就是把问题拆解成具有相同解决思路的子问题，直到最后被拆解的子问题不能够拆分，这个过程是“递”。<br>当解决了最小粒度可求解的子问题后，在“归”的过程中顺其自然的解决了最开始的问题</p><a href=#复杂度分析><h4 id=复杂度分析><span class=hanchor arialabel=Anchor># </span>复杂度分析</h4></a><p>总时间 = 子问题个数 * 解决一个子问题需要的时间</p><a href=#动态规划解法><h5 id=动态规划解法><span class=hanchor arialabel=Anchor># </span>动态规划解法</h5></a><p>递归是自顶向下(看上文递归树)，动态规划是自底向上，将递归改成迭代</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>fib</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>n</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>(</span><span class=nx>n</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	 <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span> 
+</span></span><span class=line><span class=cl>	<span class=kd>let</span> <span class=nx>a1</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=kd>let</span> <span class=nx>a2</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;</span> <span class=nx>n</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	 <span class=p>[</span><span class=nx>a1</span><span class=p>,</span> <span class=nx>a2</span><span class=p>]</span> <span class=o>=</span> <span class=p>[</span><span class=nx>a2</span><span class=p>,</span> <span class=nx>a1</span> <span class=o>+</span> <span class=nx>a2</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span> 
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=nx>a2</span><span class=p>;</span> 
+</span></span></code></pre></td></tr></table></div></div><a href=#算法思想><h3 id=算法思想><span class=hanchor arialabel=Anchor># </span>算法思想</h3></a><ul><li>分治：分而治之，先解决子问题，再将子问题的解合并求出原问题。</li><li>贪心：一条路走到黑，选择当下局部最优的路线，没有后悔药。</li><li>回溯：一条路走到黑，手握后悔药，可以无数次重来。(英雄联盟艾克大招无冷却)。</li><li>动态规划：上帝视角，手握无数平行宇宙的历史存档，同时发展出无数个未来。</li></ul><a href=#分治算法><h4 id=分治算法><span class=hanchor arialabel=Anchor># </span>分治算法</h4></a><ul><li>分解：将原问题分解成一系列子问题</li><li>解决：递归求解各个子问题，若子问题足够小，则直接求解</li><li>合并：将子问题的结果合并成原问题</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>// 归并排序
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>mergeSort</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>arr</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=kr>const</span> <span class=nx>len</span> <span class=o>=</span> <span class=nx>arr</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>(</span><span class=nx>len</span> <span class=o>&gt;</span> <span class=mi>1</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=kr>const</span> <span class=nx>middle</span> <span class=o>=</span> <span class=nb>Math</span><span class=p>.</span><span class=nx>floor</span><span class=p>(</span><span class=nx>len</span> <span class=o>/</span> <span class=mi>2</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=kr>const</span> <span class=nx>left</span> <span class=o>=</span> <span class=nx>arr</span><span class=p>.</span><span class=nx>slice</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=nx>middle</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=kr>const</span> <span class=nx>right</span> <span class=o>=</span> <span class=nx>arr</span><span class=p>.</span><span class=nx>slice</span><span class=p>(</span><span class=nx>middle</span><span class=p>,</span> <span class=nx>len</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=kd>let</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>,</span> <span class=nx>j</span> <span class=o>=</span> <span class=mi>0</span><span class=p>,</span> <span class=nx>k</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=nx>mergeSort</span><span class=p>(</span><span class=nx>left</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=nx>mergeSort</span><span class=p>(</span><span class=nx>right</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=k>while</span><span class=p>(</span><span class=nx>i</span> <span class=o>&lt;</span> <span class=nx>left</span><span class=p>.</span><span class=nx>length</span> <span class=o>&amp;&amp;</span> <span class=nx>j</span> <span class=o>&lt;</span> <span class=nx>right</span><span class=p>.</span><span class=nx>length</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=k>if</span> <span class=p>(</span><span class=nx>left</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>&lt;</span> <span class=nx>right</span><span class=p>[</span><span class=nx>j</span><span class=p>])</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>				<span class=nx>arr</span><span class=p>[</span><span class=nx>k</span><span class=p>]</span> <span class=o>=</span> <span class=nx>left</span><span class=p>[</span><span class=nx>i</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>				<span class=nx>i</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>			<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>				<span class=nx>arr</span><span class=p>[</span><span class=nx>k</span><span class=p>]</span> <span class=o>=</span> <span class=nx>left</span><span class=p>[</span><span class=nx>j</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>				<span class=nx>j</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>			<span class=p>}</span>
+</span></span><span class=line><span class=cl>			<span class=nx>k</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>		<span class=k>while</span> <span class=p>(</span><span class=nx>i</span> <span class=o>&lt;</span> <span class=nx>left</span><span class=p>.</span><span class=nx>length</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=nx>arr</span><span class=p>[</span><span class=nx>k</span><span class=p>]</span> <span class=o>=</span> <span class=nx>left</span><span class=p>[</span><span class=nx>i</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>			<span class=nx>i</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>			<span class=nx>k</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>		<span class=k>while</span> <span class=p>(</span><span class=nx>j</span> <span class=o>&lt;</span> <span class=nx>right</span><span class=p>.</span><span class=nx>length</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=nx>arr</span><span class=p>[</span><span class=nx>k</span><span class=p>]</span> <span class=o>=</span> <span class=nx>right</span><span class=p>[</span><span class=nx>j</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>			<span class=nx>j</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>			<span class=nx>k</span><span class=o>++:</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=nx>arr</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#动态规划><h4 id=动态规划><span class=hanchor arialabel=Anchor># </span>动态规划</h4></a><a href=#动态规划三要素><h5 id=动态规划三要素><span class=hanchor arialabel=Anchor># </span>动态规划三要素</h5></a><ul><li>重叠子问题</li><li>最优子结构</li><li>状态转移方程</li></ul><a href=#重叠子问题><h5 id=重叠子问题><span class=hanchor arialabel=Anchor># </span>重叠子问题</h5></a><p>切换机器思维，自底向上思考</p><p>爬第n阶楼梯的方法数量，等于两部分之和：</p><ul><li>爬上 n - 1 阶楼梯的方法数量</li><li>爬上 n - 2 阶楼梯的方法数量</li></ul><a href=#最优子结构><h5 id=最优子结构><span class=hanchor arialabel=Anchor># </span>最优子结构</h5></a><p>子问题的最优解能够推出原问题的优解</p><a href=#状态转移方程><h5 id=状态转移方程><span class=hanchor arialabel=Anchor># </span>状态转移方程</h5></a><p><strong>dp[n] = dp[n - 1] + dp[n - 2]</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>// 爬楼梯
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>climbStairs</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>n</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=kr>const</span> <span class=nx>dp</span> <span class=o>=</span> <span class=p>[];</span>
+</span></span><span class=line><span class=cl>	<span class=nx>dp</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=nx>dp</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>2</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;=</span> <span class=nx>n</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	 <span class=nx>dp</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>=</span> <span class=nx>dp</span><span class=p>[</span><span class=nx>i</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span> <span class=o>+</span> <span class=nx>dp</span><span class=p>[</span><span class=nx>i</span><span class=o>-</span><span class=mi>2</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span> 
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=nx>dp</span><span class=p>[</span><span class=nx>n</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 优化
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>climeStairs2</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>n</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=kd>let</span> <span class=nx>a1</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=kd>let</span> <span class=nx>a2</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>2</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;=</span> <span class=nx>n</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=p>[</span><span class=nx>a1</span><span class=p>,</span> <span class=nx>a2</span><span class=p>]</span> <span class=o>=</span> <span class=p>[</span><span class=nx>a2</span><span class=p>,</span> <span class=nx>a1</span> <span class=o>+</span> <span class=nx>a2</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=nx>a2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#贪心算法><h4 id=贪心算法><span class=hanchor arialabel=Anchor># </span>贪心算法</h4></a><p><code>贪心算法</code>是<code>动态规划</code>算法的一个子集，可以更高效解决一部分更特殊的问题。实际上，用贪心算法解决问题的思路，并不总能给出最优解。因为它在每一步的决策中，选择目前最优策略，不考虑全局是不是最优</p><p>分发饼干</p><a href=#思路贪心算法--双指针求解><h5 id=思路贪心算法--双指针求解><span class=hanchor arialabel=Anchor># </span>思路：贪心算法 + 双指针求解</h5></a><ul><li>给一个孩子的饼干应当尽量小并且能满足孩子，大的留来满足胃口大的孩子</li><li>因为胃口小的孩子最容易得到满足，所以优先满足胃口小的孩子需求</li><li>按照从小到大的顺序使用饼干尝试是否可满足某个孩子</li><li>当饼干 j >= 胃口 i 时，饼干满足胃口，更新满足的孩子数并移动指针 <code>i++ j++ res++</code></li><li>当饼干 j &lt; 胃口 i 时，饼干不能满足胃口，需要换大的 <code>j++</code></li></ul><a href=#关键点><h5 id=关键点><span class=hanchor arialabel=Anchor># </span>关键点</h5></a><p>将需求因子 g 和 s 分别从小到大进行排序，使用贪心思想配合双指针，每个饼干只尝试一次，成功则换下一个孩子来尝试</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>findContentChildren</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>g</span><span class=p>,</span> <span class=nx>s</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>g</span> <span class=o>=</span> <span class=nx>g</span><span class=p>.</span><span class=nx>sort</span><span class=p>((</span><span class=nx>a</span><span class=p>,</span> <span class=nx>b</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>a</span> <span class=o>-</span> <span class=nx>b</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=nx>s</span> <span class=o>=</span> <span class=nx>s</span><span class=p>.</span><span class=nx>sort</span><span class=p>((</span><span class=nx>a</span><span class=p>,</span> <span class=nx>b</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>a</span> <span class=o>-</span> <span class=nx>b</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=kd>let</span> <span class=nx>gi</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=kd>let</span> <span class=nx>sj</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=kd>let</span> <span class=nx>res</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>while</span> <span class=p>(</span><span class=nx>gi</span> <span class=o>&lt;</span> <span class=nx>g</span><span class=p>.</span><span class=nx>length</span> <span class=o>&amp;&amp;</span> <span class=nx>sj</span> <span class=o>&lt;</span> <span class=nx>s</span><span class=p>.</span><span class=nx>length</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span> <span class=p>(</span><span class=nx>s</span><span class=p>[</span><span class=nx>sj</span><span class=p>]</span> <span class=o>&gt;=</span> <span class=nx>g</span><span class=p>[</span><span class=nx>gi</span><span class=p>])</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=nx>gi</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>			<span class=nx>sj</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>			<span class=nx>res</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=nx>sj</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=nx>res</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#回溯算法><h4 id=回溯算法><span class=hanchor arialabel=Anchor># </span>回溯算法</h4></a><p>回溯算法本质上就是枚举，使用摸着石头过河的查找策略，还可以通过剪枝少走冤枉路</p><a href=#思路><h5 id=思路><span class=hanchor arialabel=Anchor># </span>思路</h5></a><p>使用回溯法进行求解，回溯是一种通过穷举所有可能情况来找到所有解的算法。如果一个候选解最后被发现并不是可行解，回溯算法会舍弃它，并在前面的一些步骤做出一些修改，并重新尝试找到可行解。究其本质，其实就是枚举。</p><p>如果没有更多的数字需要被输入，说明当前的组合已经产生。</p><p>如果还有数字需要被输入：</p><ul><li>遍历下一个数字所对应的所有映射的字母</li><li>将当前的字母添加到组合最后，也就是 <code>str + tmp[r]</code></li></ul><a href=#关键点-1><h5 id=关键点-1><span class=hanchor arialabel=Anchor># </span>关键点</h5></a><p>在for循环中调用递归。</p><a href=#复杂度分析-1><h5 id=复杂度分析-1><span class=hanchor arialabel=Anchor># </span>复杂度分析</h5></a><p>N+M 是输入数字的总数</p><ul><li>时间复杂度：O(3^N * 4^M)</li><li>空间复杂度：O(3^N * 4^M)</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>letterCombinations</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>digits</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>digits</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=k>return</span> <span class=p>[];</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=kr>const</span> <span class=nx>len</span> <span class=o>=</span> <span class=nx>digits</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=kr>const</span> <span class=nx>map</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Map</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>	<span class=nx>map</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;2&#39;</span><span class=p>,</span> <span class=s1>&#39;abc&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=nx>map</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;3&#39;</span><span class=p>,</span> <span class=s1>&#39;def&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=nx>map</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;4&#39;</span><span class=p>,</span> <span class=s1>&#39;ghi&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=nx>map</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;5&#39;</span><span class=p>,</span> <span class=s1>&#39;jkl&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=nx>map</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;6&#39;</span><span class=p>,</span> <span class=s1>&#39;mno&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=nx>map</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;7&#39;</span><span class=p>,</span> <span class=s1>&#39;pqrs&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=nx>map</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;8&#39;</span><span class=p>,</span> <span class=s1>&#39;tuv&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=nx>map</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;9&#39;</span><span class=p>,</span> <span class=s1>&#39;wxyz&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=kr>const</span> <span class=nx>result</span> <span class=o>=</span> <span class=p>[];</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=kd>function</span> <span class=nx>generate</span><span class=p>(</span><span class=nx>i</span><span class=p>,</span> <span class=nx>str</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span> <span class=p>(</span><span class=nx>i</span> <span class=o>==</span> <span class=nx>len</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=nx>result</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=nx>str</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>			<span class=k>return</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>		<span class=kr>const</span> <span class=nx>tmp</span> <span class=o>=</span> <span class=nx>map</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=nx>digits</span><span class=p>[</span><span class=nx>i</span><span class=p>]);</span>
+</span></span><span class=line><span class=cl>		<span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>r</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>r</span> <span class=o>&lt;</span> <span class=nx>tmp</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span> <span class=nx>r</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=nx>generate</span><span class=p>(</span><span class=nx>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>,</span> <span class=nx>str</span> <span class=o>+</span> <span class=nx>tmp</span><span class=p>[</span><span class=nx>r</span><span class=p>]);</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=nx>generate</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=s1>&#39;&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=nx>result</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://wackoct.github.io/tiandity-garden/js/graph.abd4bc2af3869a96524d7d23b76152c7.js></script></div></div><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=https://wackoct.github.io/tiandity-garden/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div></div></body></html>
