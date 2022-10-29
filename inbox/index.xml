@@ -6,23 +6,22 @@
 4.成果一定要量化，一定要量化，一定要量化。(重要的事情说三遍)
 5.升高维度，站在团队、企业的角度思考，企业喜欢哪种员工？
 6.个人爱好要能够进一步突出自己，如：跑马拉松(耐力、毅力)、阅读写作(爱学习)。
-7.自我评价要是千篇一律的话就不要写。</description></item><item><title/><link>https://wackoct.github.io/tiandity-garden/Inbox/%E9%A1%B9%E7%9B%AE/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://wackoct.github.io/tiandity-garden/Inbox/%E9%A1%B9%E7%9B%AE/</guid><description>用户资源访问JWT引入Refresh Token
+7.自我评价要是千篇一律的话就不要写。</description></item><item><title/><link>https://wackoct.github.io/tiandity-garden/Inbox/%E9%A1%B9%E7%9B%AE/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://wackoct.github.io/tiandity-garden/Inbox/%E9%A1%B9%E7%9B%AE/</guid><description>乐酷生活通 用户资源访问JWT引入Refresh Token
 城市自动定位附近一线城市
-实时搜索展示节流处理
 多种图片规格瀑布流布局展示
+评价细化实现评价标签统计
+介绍视频自动播放解决
+图片保护实现加水印功能
+海报生成分享
+推荐排序引入类型权重分析记录
+详情加载引入Loading过渡效果
+搜索热点展示实现上下滚动切换
 城市选择列表按首字母排序实现
-列表详情切换缓存列表页
-多种组件关系通信
-图文信息展示按卡片或列表动态排列
-代码分包处理引入异步组件
-重复请求清除副作用
-监听数据表单提交获取
+图文浏览实现滚动节流处理
+重复请求发生竞态问题清除副作用
+问卷调研实现监听数据表单提交获取
 请求携带token封装Axios
 五星好评组件封装
 省市区级联选择器组件封装
-日历组件封装
-字母索引导航组件封装
-用户操作按钮权限控制
-%%登录状态持久化%%
-重复打包引入全局注册Store</description></item><item><title/><link>https://wackoct.github.io/tiandity-garden/Inbox/%E9%A1%B9%E7%9B%AE%E5%9B%9E%E7%AD%94/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://wackoct.github.io/tiandity-garden/Inbox/%E9%A1%B9%E7%9B%AE%E5%9B%9E%E7%AD%94/</guid><description>乐酷APP 主体功能模块 组件化功能拆分 城市切换定位功能 搜索节流 瀑布流实现 首字母排序实现 次要功能模块 KeepAlive缓存Tabs列表 KeepAlive | Vue.js
+日历组件封装</description></item><item><title/><link>https://wackoct.github.io/tiandity-garden/Inbox/%E9%A1%B9%E7%9B%AE%E5%9B%9E%E7%AD%94/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://wackoct.github.io/tiandity-garden/Inbox/%E9%A1%B9%E7%9B%AE%E5%9B%9E%E7%AD%94/</guid><description>乐酷APP 主体功能模块 组件化功能拆分 城市切换定位功能 搜索节流 瀑布流实现 首字母排序实现 次要功能模块 KeepAlive缓存Tabs列表 KeepAlive | Vue.js
 多种组件通信 slot自定义组件内容 异步组件加载Loading组件优化 数据获取模块 watchEffect自执行请求数据 watch响应城市切换请求数据 Axios请求与响应拦截器 组件模块 五星好评组件 级联组件 日历组件 字母索引导航组件 其它模块 vue-router动态权限路由 Pinia管理客户端数据 LocalStorage缓存页面数据</description></item></channel></rss>
